@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:EquityX_L00160463.Models"
+             xmlns:vm="clr-namespace:EquityX_L00160463.ViewModels"
+             x:DataType="vm:AssetViewModel"
+             x:Class="EquityX_L00160463.View.BindingTest" 
+             Title="BindingTest">
+
+    <CollectionView ItemsSource="{Binding Assets}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Asset">
+                <Frame Margin="10">
+                    <StackLayout>
+                        <!-- Binding to properties of Asset -->
+                        <Label Text="{Binding DisplayName}" FontSize="Medium" FontAttributes="Bold"/>
+                        <Label Text="{Binding Symbol}" FontSize="14" TextColor="#666" HorizontalOptions="Start" />
+                        <Image Source="{Binding CoinImageUrl}" HeightRequest="50" WidthRequest="50"/>
+
+                        <!-- Regular Market Price -->
+                        <Label Text="Regular Market Price: "
+                               FontSize="Small" 
+                               VerticalOptions="Center"/>
+                        <Label Text="{Binding RegularMarketPrice}"
+                               FontSize="Small" 
+                               VerticalOptions="Center"/>
+
+                        <!-- Market Change Percent -->
+                        <Label Text="Market Change Percent: "
+                               FontSize="Small" 
+                               VerticalOptions="Center"/>
+                        <Label Text="{Binding RegularMarketChangePercent, StringFormat='{0:F2}%'}"
+                               FontSize="Small" 
+                               VerticalOptions="Center"/>
+
+                        <!-- 52 Week Range -->
+                        <Label Text="52 Week Low: "
+                               FontSize="Small" 
+                               VerticalOptions="Center"/>
+                        <Label Text="{Binding FiftyTwoWeekLow}"
+                               FontSize="Small" 
+                               VerticalOptions="Center"/>
+
+                        <Label Text="52 Week High: "
+                               FontSize="Small" 
+                               VerticalOptions="Center"/>
+                        <Label Text="{Binding FiftyTwoWeekHigh}"
+                               FontSize="Small" 
+                               VerticalOptions="Center"/>
+
+                        <Button Text="View top 3 changes" Clicked="NavigateToBindingTest"/>
+                    </StackLayout>
+
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
